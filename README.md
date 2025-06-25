@@ -1,0 +1,2 @@
+# syakariko_game
+しゃかりこゲーム
