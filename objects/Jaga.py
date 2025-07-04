@@ -1,7 +1,7 @@
 import pygame
 from abc import ABC, abstractmethod #抽象基底クラス
 
-class JGA(ABC):
+class Jaga(ABC):
     def __init__(self, x: int, y: int, color: int, speed: int, point: int, image: pygame.Surface):
         self.x = x #x軸
         self.y = y #y軸
