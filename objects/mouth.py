@@ -21,4 +21,4 @@ class Mouth:
         Jaga_rect = pygame.Rect(Jaga.x, Jaga.y, Jaga.width, Jaga.height)
         return mouth_rect.colliderect(Jaga_rect)
         #口に入ったらTrue
-        #m
+        
