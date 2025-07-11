@@ -1,4 +1,4 @@
-from objects.jga import Jaga
+from objects.Jaga import Jaga
 
 class Cheese(Jaga):  # チーズ味
     def __init__(self, x, y, color, speed, point, image):
