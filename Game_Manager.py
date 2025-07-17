@@ -1,45 +1,27 @@
 import pygame
-from screen.start import draw_start_screen, handle_start_event
-from screen.end import draw_end_screen, handle_end_event
-from game.play import GamePlay  # ゲーム本体処理
+from game_step1 import run_step1
+from game_step2 import run_step2
+from screens.start_screen import show_start_screen
+from screens.end_screen import show_end_screen
 
 class GameManager:
-    def __init__(self, screen, width, height):
+    def __init__(self, screen):
         self.screen = screen
-        self.width = width
-        self.height = height
+        self.clock = pygame.time.Clock()
+        self.running = True
 
-        self.state = "start"  # start, playing, end
-        self.game = None
+    def run(self):
+        pygame.mixer.init()
 
-    def handle_event(self, event):
-        if self.state == "start":
-            if handle_start_event(event):
-                self.start_game()
-        elif self.state == "playing":
-            self.game.handle_event(event)
-        elif self.state == "end":
-            if handle_end_event(event):
-                self.restart_game()
+        # スタート画面表示
+        show_start_screen(self.screen)
 
-    def update(self):
-        if self.state == "playing":
-            self.game.update()
-            if self.game.is_game_over():
-                self.state = "end"
+        # ゲーム本編ステップ1・ステップ2を実行
+        run_step1(self.screen)
+        run_step2(self.screen)
 
-    def draw(self):
-        if self.state == "start":
-            draw_start_screen(self.screen, self.width, self.height)
-        elif self.state == "playing":
-            self.game.draw()
-        elif self.state == "end":
-            draw_end_screen(self.screen, self.width, self.height)
+        # エンド画面表示
+        show_end_screen(self.screen)
 
-    def start_game(self):
-        self.game = GamePlay(self.screen, self.width, self.height)
-        self.state = "playing"
-
-    def restart_game(self):
-        self.state = "start"
-        self.game = None
+        # メインループ終了
+        self.running = False
