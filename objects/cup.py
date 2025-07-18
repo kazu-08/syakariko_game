@@ -7,7 +7,6 @@ class Cup:
         self.width = 60
         self.height = 30
         self.color = (150, 150, 250)
-        self.speed = 10
         self.point = 0      # 得点
         self.collect = 0    # 収集したじゃがりこ数
 
@@ -20,7 +19,7 @@ class Cup:
 
     def draw(self, screen):
         top_width = self.width
-        bottom_width = self.width * 0.5  # 底辺は上辺の半分
+        bottom_width = self.width * 0.67  # 底辺は上辺の半分
         half_top = top_width / 2
         half_bottom = bottom_width / 2
 
