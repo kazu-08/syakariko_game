@@ -1,7 +1,7 @@
 # screens/end_screen.py
 import pygame
 import sys
-from screens.config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
+from config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
 
 
 def show_end_screen(screen, width, height, score):
