@@ -1,6 +1,6 @@
 import pygame
 from objects.Jaga import Jaga
-from screens.config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
+from config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
 
 class Cheese(Jaga):  # チーズ味
     def __init__(self, x, y, color, speed, point):

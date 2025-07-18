@@ -1,6 +1,6 @@
 import pygame
 from objects.Cheese import Cheese
-from screens.config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
+from config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
 
 
 pygame.init()
