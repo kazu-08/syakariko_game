@@ -4,7 +4,7 @@ from screens.start_screen import show_start_screen
 from screens.end_screen import show_end_screen
 from game_step1 import run_step1
 from game_step2 import run_step2
-from screens.config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
+from config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
 
 
 class GameManager:
