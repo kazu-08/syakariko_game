@@ -12,7 +12,7 @@ current_dir = os.path.dirname(__file__)
 image_path = os.path.join(current_dir, "Cup.png")
 
 # 画像を読み込む（同じフォルダに 'object.png' を置いてね）
-object_img = pygame.image.load(image_path)
+original_img = pygame.image.load(image_path)
 small_img = pygame.transform.scale(original_img, (int(original_img.get_width() * 0.1),
                                                   int(original_img.get_height() * 0.1)))
 
@@ -37,7 +37,7 @@ while running:
         object_rect.x += 5
 
     # 画像を描画
-    screen.blit(object_img, object_rect)
+    screen.blit(small_img, object_rect)
     pygame.display.flip()
     clock.tick(60)
 
