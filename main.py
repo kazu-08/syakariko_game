@@ -1,10 +1,10 @@
 import pygame
 from Game_Manager import GameManager
+from screens.config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
 
 def main():
     pygame.init()
-    screen_width, screen_height = 800, 600
-    screen = pygame.display.set_mode((screen_width, screen_height))
+    screen = init_screen()
     pygame.display.set_caption("じゃがりこゲーム")
 
     clock = pygame.time.Clock()
