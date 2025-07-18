@@ -1,14 +1,18 @@
-class Step1:
-    def __init__(self, screen):
-        # じゃがりこ生成・カップ・スコアなど初期化
+import pygame
 
-    def update(self):
-        # 全オブジェクト更新＆当たり判定
+def run_step1(screen):
+    font = pygame.font.SysFont(None, 60)
+    text = font.render("Step 1 - 任務開始！キーを押して進む", True, (255, 255, 255))
+    running = True
 
-    def draw(self):
-        # 描画処理
+    while running:
+        screen.fill((50, 100, 150))
+        screen.blit(text, (50, 200))
+        pygame.display.flip()
 
-    def is_finished(self):
-        # Step1終了条件（時間切れ or 本数）
-        return True
-
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.KEYDOWN:
+                running = False  # キーが押されたらStep2へ

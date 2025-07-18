@@ -1,13 +1,18 @@
-class Step2:
-    def __init__(self, screen, collected_data):
-        # Step1の結果を引き継ぎ初期化
+import pygame
 
-    def update(self):
-        # じゃがりこ発射、口との当たり判定など
+def run_step2(screen):
+    font = pygame.font.SysFont(None, 60)
+    text = font.render("Step 2 - 最終任務！キーを押して終了画面へ", True, (255, 255, 255))
+    running = True
 
-    def draw(self):
-        # 描画処理
+    while running:
+        screen.fill((100, 50, 150))
+        screen.blit(text, (50, 200))
+        pygame.display.flip()
 
-    def is_finished(self):
-        # 終了条件（時間やスコア）
-        return True
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.KEYDOWN:
+                running = False  # キーが押されたらエンド画面へ
