@@ -1,36 +1,27 @@
 import pygame
-import sys
 from Game_Manager import GameManager
+from screens.config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
 
 def main():
     pygame.init()
-
-    screen_width, screen_height = 640, 480
-    screen = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption("しゃかりこゲーム")
+    screen = init_screen()
+    pygame.display.set_caption("じゃがりこゲーム")
 
     clock = pygame.time.Clock()
-    fps = 60
-
-    manager = GameManager(screen, screen_width, screen_height)
+    manager = GameManager(screen)
 
     running = True
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            manager.handle_event(event)
+            manager.handle_event(event)  # ← 正しい位置
 
         manager.update()
-
-        screen.fill((255, 255, 255))
-        manager.draw()
-
         pygame.display.flip()
-        clock.tick(fps)
+        clock.tick(60)
 
     pygame.quit()
-    sys.exit()
 
 if __name__ == "__main__":
     main()

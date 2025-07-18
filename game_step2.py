@@ -1,18 +1,7 @@
 import pygame
 
-def run_step2(screen):
-    font = pygame.font.SysFont(None, 60)
-    text = font.render("Step 2 - 最終任務！キーを押して終了画面へ", True, (255, 255, 255))
-    running = True
-
-    while running:
-        screen.fill((100, 50, 150))
-        screen.blit(text, (50, 200))
-        pygame.display.flip()
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
-            elif event.type == pygame.KEYDOWN:
-                running = False  # キーが押されたらエンド画面へ
+def run_step2(screen, manager):
+    screen.fill((200, 200, 255))
+    font = pygame.font.SysFont(None, 48)
+    text = font.render("Step 2: 食べる時間！", True, (0, 0, 100))
+    screen.blit(text, (100, 150))

@@ -1,6 +1,8 @@
 # screens/start_screen.py
 import pygame
 import sys
+from screens.config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
+
 
 def show_start_screen(screen, width, height):
     font_title = pygame.font.SysFont(None, 72)
@@ -12,8 +14,8 @@ def show_start_screen(screen, width, height):
     while True:
         screen.fill((255, 255, 255))
 
-        screen.blit(title_surface, title_surface.get_rect(center=(width // 2, height // 3)))
-        screen.blit(start_surface, start_surface.get_rect(center=(width // 2, height * 2 // 3)))
+        screen.blit(title_surface, title_surface.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3)))
+        screen.blit(start_surface, start_surface.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT * 2 // 3)))
 
         pygame.display.flip()
 
