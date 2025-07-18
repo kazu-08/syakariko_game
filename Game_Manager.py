@@ -25,7 +25,7 @@ class GameManager:
 
     def update(self):
         if self.state == "start":
-            show_start_screen(self.screen, self)
+            show_start_screen(self.screen, self,self.screen.get_height()) #height追加してみた
 
         elif self.state == "step1":
             elapsed = time.time() - self.start_time
