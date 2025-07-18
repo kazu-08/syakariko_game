@@ -9,9 +9,9 @@ def show_end_screen(screen, width, height, score):
     font_score = pygame.font.SysFont(None, 48)
     font_restart = pygame.font.SysFont(None, 32)
 
-    title_surface = font_title.render("ゲーム終了", True, (0, 0, 0))
-    score_surface = font_score.render(f"スコア: {score}", True, (0, 0, 128))
-    restart_surface = font_restart.render("スペースキーで再スタート / Escで終了", True, (100, 100, 100))
+    title_surface = font_title.render("gameover", True, (0, 0, 0))
+    score_surface = font_score.render(f"score: {score}", True, (0, 0, 128))
+    restart_surface = font_restart.render("space or Esc", True, (100, 100, 100))
 
     while True:
         screen.fill((255, 255, 255))

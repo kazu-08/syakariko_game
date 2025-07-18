@@ -5,7 +5,7 @@ from config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
 def main():
     pygame.init()
     screen = init_screen()
-    pygame.display.set_caption("じゃがりこゲーム")
+    pygame.display.set_caption("syakariko-game")
 
     clock = pygame.time.Clock()
     manager = GameManager(screen)
