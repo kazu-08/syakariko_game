@@ -1,7 +1,9 @@
+import pygame
 from objects.Jaga import Jaga
+from config import SCREEN_WIDTH
 
 class Tarako(Jaga):  # たらこ味
-    def __init__(self, x, y, color, speed, point, image, reveal_y=200):
+    def __init__(self, x, y, color, speed, point, reveal_y=200):
         image = pygame.image.load("assets/images/tarako.jpeg")
         image = pygame.transform.scale(image, (30, 30))
         super().__init__(x, y, color, speed, point, image)
