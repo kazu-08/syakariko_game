@@ -1,37 +1,42 @@
 import pygame
-from objects.Mouth import Mouth
-
-class DummyJaga:
-    def __init__(self, x, y, width=20, height=20):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
+from objects.mouth import Mouth
+from objects.Button import Button
+from config import SCREEN_WIDTH, SCREEN_HEIGHT
 
 pygame.init()
-screen = pygame.display.set_mode((400, 300))
-pygame.display.set_caption("Mouth Test")
-
-mouth = Mouth(100, 100)
-jaga = DummyJaga(110, 110)  # 口の中にいる想定
-
-running = True
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("Mouth Move Test")
 clock = pygame.time.Clock()
 
+# Mouth インスタンス（画像で表示）
+mouth = Mouth(x=SCREEN_WIDTH // 2 - 25, y=SCREEN_HEIGHT - 60, width=50, height=50)
+
+# Button インスタンス（左右移動用）
+buttons = [
+    Button("left", 100, SCREEN_HEIGHT - 30, 30, "left"),
+    Button("right", 200, SCREEN_HEIGHT - 30, 30, "right"),
+]
+
+running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    screen.fill((255, 255, 255))  # 白背景
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            pos = pygame.mouse.get_pos()
+            for btn in buttons:
+                action = btn.check_click(pos)
+                if action == "left":
+                    mouth.move("left")
+                elif action == "right":
+                    mouth.move("right")
+
+    screen.fill((255, 255, 255))  # 背景白
     mouth.draw(screen)
 
-    # Jagaの表示（青い矩形）
-    pygame.draw.rect(screen, (0, 0, 255), (jaga.x, jaga.y, jaga.width, jaga.height))
-
-    # 衝突しているかをコンソールに出力
-    if mouth.is_in_mouth(jaga):
-        print("Jaga is in mouth!")
+    for btn in buttons:
+        btn.draw(screen)
 
     pygame.display.flip()
     clock.tick(60)
