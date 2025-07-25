@@ -5,6 +5,7 @@ class Mouth:
         self.x = x
         self.y = y
         #四角を描画する場合
+        
         self.width = width
         self.height = height
         #画像の場合

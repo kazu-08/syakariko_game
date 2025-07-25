@@ -1,21 +1,27 @@
 # screens/start_screen.py
 import pygame
 import sys
-from config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
+from config import SCREEN_WIDTH, SCREEN_HEIGHT
+from objects.Button import Button  # ここでButtonクラスを読み込む
 
 
 def show_start_screen(screen, width, height):
     font_title = pygame.font.SysFont(None, 72)
-    font_start = pygame.font.SysFont(None, 36)
 
-    title_surface = font_title.render("しゃかりこゲーム", True, (0, 0, 0))
-    start_surface = font_start.render("スペースキーでスタート", True, (50, 50, 50))
+    # タイトル表示のための surface
+    title_surface = font_title.render("syakariko-game", True, (0, 0, 0))
+
+    # "start" ボタンの作成（中心に配置）
+    start_button = Button(shape="circle", x=width // 2, y=height * 2 // 3, size=40, action="start")
 
     while True:
         screen.fill((255, 255, 255))
 
-        screen.blit(title_surface, title_surface.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3)))
-        screen.blit(start_surface, start_surface.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT * 2 // 3)))
+        # タイトル表示
+        screen.blit(title_surface, title_surface.get_rect(center=(width // 2, height // 3)))
+
+        # ボタン表示
+        start_button.draw(screen)
 
         pygame.display.flip()
 
@@ -23,5 +29,8 @@ def show_start_screen(screen, width, height):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                return  # スタート
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                pos = pygame.mouse.get_pos()
+                action = start_button.check_click(pos)
+                if action == "start":
+                    return  # ゲーム開始（mainループやGameManagerに制御を戻す）
