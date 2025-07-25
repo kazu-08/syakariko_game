@@ -34,13 +34,13 @@ class GameManager:
         elif self.state == "step1":
             elapsed = time.time() - self.start_time
             run_step1(self.screen, self)
-            if elapsed > 45:
+            if elapsed > 15:
                 self.start_step2()
 
         elif self.state == "step2":
             elapsed = time.time() - self.start_time
             run_step2(self.screen, self)
-            if elapsed > 45 or len(self.jagariko_list) == 0:
+            if elapsed > 15 or len(self.jagariko_list) == 0:
                 self.state = "end"
 
         elif self.state == "end":
@@ -54,13 +54,13 @@ class GameManager:
         elif self.state == "step1":
             elapsed = time.time() - self.start_time
             run_step1(self.screen, self)
-            if elapsed > 45:
+            if elapsed > 15:
                 self.start_step2()
 
         elif self.state == "step2":
             elapsed = time.time() - self.start_time
             run_step2(self.screen, self)
-            if elapsed > 45 or len(self.jagariko_list) == 0:
+            if elapsed > 15 or len(self.jagariko_list) == 0:
                 self.show_end_screen()
 
         elif self.state == "end":
