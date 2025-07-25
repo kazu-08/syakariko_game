@@ -14,6 +14,7 @@ class GameManager:
         self.state = "start"  # start, step1, step2, end
         self.start_time = None
         self.jagariko_list = []
+        self.score = 0
 
     def start_game(self):
         self.state = "step1"
@@ -43,7 +44,12 @@ class GameManager:
                 self.state = "end"
 
         elif self.state == "end":
-            show_end_screen(self.screen, self)
+            show_end_screen(
+                self.screen,
+                self.screen.get_width(),
+                self.screen.get_height(),
+                self.score
+            )
 
         elif self.state == "step1":
             elapsed = time.time() - self.start_time
@@ -67,3 +73,6 @@ class GameManager:
         if self.state == "start":
             if event.type == 1025:  # MOUSEBUTTONDOWN
                 self.start_game()
+
+    def add_score(self,points):
+        self.score += points
