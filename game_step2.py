@@ -19,11 +19,12 @@ def run_step2(screen, manager):
 
     # 初期化
     if not hasattr(manager, "cup"):
-        # 画面上部に配置、上下反転を想定（必要に応じて画像を反転してロード）
-        manager.cup = Cup(x=screen_width // 2 - 50, y=50, screen_width=screen_width)
+        x = screen_width // 2
+        y = 50  # 画面上部の適当なY座標
+        manager.cup = Cup(x=x, y=y, screen_width=screen_width, screen_height=screen_height)
+        manager.cup.flip_vertical()  # 上下反転
 
     if not hasattr(manager, "mouth"):
-        # 画面下部にmouthを配置
         mouth_height = 60
         manager.mouth = Mouth(screen, x=screen_width // 2 - 50, y=screen_height - mouth_height - 10)
 
@@ -54,15 +55,17 @@ def run_step2(screen, manager):
                 elif result == "mouth_right":
                     manager.mouth.move("right")
                 elif result == "shoot":
-                    # カップ位置から発射
                     JagaClass = random.choice(JAGA_CLASSES)
                     new_jaga = JagaClass(
-                        x=manager.cup.x + manager.cup.width // 2,
-                        y=manager.cup.y + manager.cup.height,
-                        speed=7,  # 下向きに落ちる
+                        x=manager.cup.rect.centerx,
+                        y=manager.cup.rect.bottom,
+                        speed=7,
                         point=10
                     )
                     manager.shots.append(new_jaga)
+
+    # --- ここでCupを自動で左右に移動させる ---
+    manager.cup.update()
 
     # 発射物の更新と衝突判定
     updated_shots = []
@@ -84,7 +87,6 @@ def run_step2(screen, manager):
     for btn in manager.buttons:
         btn.draw(screen)
 
-    # スコア表示
     score_txt = font.render(f"Score: {manager.score}", True, (0, 0, 0))
     screen.blit(score_txt, (10, 10))
 
