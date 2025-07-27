@@ -3,19 +3,19 @@ import os
 from .Button import Button
 
 class Cup:
-    def __init__(self, screen_width=800, screen_height=600):
+    def __init__(self, x=400, y=500, screen_width=800, screen_height=600):
         self.screen_width = screen_width
         self.screen_height = screen_height
 
-        # カップ画像の読み込み
+        # カップ画像の読み込みと縮小
         current_dir = os.path.dirname(__file__)
         image_path = os.path.normpath(os.path.join(current_dir, "../assets/images/Cup.png"))
-        original_img = pygame.image.load(image_path).convert_alpha()
+        original_img = pygame.image.load(image_path)
         self.image = pygame.transform.scale(original_img, (int(original_img.get_width() * 0.05),
-                                                           int(original_img.get_height() * 0.05)))
+                                                       int(original_img.get_height() * 0.05)))
 
         self.rect = self.image.get_rect()
-        self.rect.center = (screen_width // 2, screen_height - 100)
+        self.rect.center = (x, y)
 
     def move_left(self):
         self.rect.x -= 10
