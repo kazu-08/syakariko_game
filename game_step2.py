@@ -1,7 +1,7 @@
 import pygame
 import random
 from objects.cup import Cup
-from objects.Mouth import Mouth
+from objects.mouth import Mouth
 from objects.JagaButter import JagaButter
 from objects.Cheese import Cheese
 from objects.Salad import Salad
