@@ -1,5 +1,7 @@
 import pygame
+import sys
 from objects.Button import Button
+from config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
 
 def show_start_screen(screen, manager, height):
     screen.fill((255, 255, 255))
