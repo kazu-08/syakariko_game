@@ -34,3 +34,4 @@ def show_start_screen(screen, width, height):
                 sys.exit()
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 return  # スタート
+"""

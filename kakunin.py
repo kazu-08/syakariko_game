@@ -6,7 +6,7 @@ pygame.display.set_caption("Font Test")
 
 # フォント設定
 font = pygame.font.Font("C:/Windows/Fonts/msgothic.ttc", 36)
-text = font.render("じゃがりこゲーム", True, (0, 0, 0))
+text = font.render("siゃがりこゲーム", True, (0, 0, 0))
 
 clock = pygame.time.Clock()
 running = True
