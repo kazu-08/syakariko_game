@@ -4,7 +4,7 @@ from objects.Jaga import Jaga
 class JagaButter(Jaga):  # じゃがバター味
     def __init__(self, x, y,  speed, point):
         image = pygame.image.load("assets/images/jagabata.jpeg")
-        image = pygame.transform.scale(image, (30,30))
+        image = pygame.transform.scale(image, (10,50))
         super().__init__(x, y,  speed, point, image)
         
     def update(self, screen_width: int = 640):
