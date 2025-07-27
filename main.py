@@ -9,6 +9,10 @@ def main():
 
     clock = pygame.time.Clock()
     manager = GameManager(screen)
+    
+    # 日本語フォントを指定（1回だけでOK）
+    font = pygame.font.Font("C:/Windows/Fonts/msgothic.ttc", 36)
+    text = font.render("じゃがりこゲーム", True, (0, 0, 0))
 
     running = True
     while running:
@@ -17,6 +21,7 @@ def main():
                 running = False
             manager.handle_event(event)  # ← 正しい位置
 
+        screen.fill((255, 255, 255))
         manager.update()
         pygame.display.flip()
         clock.tick(60)
