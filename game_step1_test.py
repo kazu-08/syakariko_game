@@ -1,6 +1,6 @@
 import pygame
 import random
-from objects.cup import Cup
+from objects.cup import cup
 from objects.JagaButter import JagaButter
 from objects.Salad import Salad
 from objects.Tarako import Tarako
