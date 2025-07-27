@@ -14,7 +14,7 @@ def show_start_screen(screen, manager, height):
     screen.blit(start_surface, start_surface.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT * 2 // 3)))
 
 
-"""
+
 def show_start_screen(screen, width, height):
     font_title = pygame.font.SysFont(None, 72)
 
@@ -34,4 +34,3 @@ def show_start_screen(screen, width, height):
                 sys.exit()
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 return  # スタート
-"""
