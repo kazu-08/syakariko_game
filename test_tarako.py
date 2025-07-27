@@ -8,7 +8,7 @@ pygame.display.set_caption("Tarako Test")
 clock = pygame.time.Clock()
 
 # Tarakoインスタンスを作成（画像はTarako内で読み込む）
-tarako = Tarako(x=185, y=0, color=0, speed=3, point=10)
+tarako = Tarako(x=185, y=0, speed=3, point=10)
 
 running = True
 while running:
