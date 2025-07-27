@@ -3,7 +3,7 @@ from objects.Jaga import Jaga
 
 class Salad(Jaga):  # サラダ味
     def __init__(self, x, y,  speed, point):
-        image = pygame.image.load("assets/images/jagabata.jpeg")
+        image = pygame.image.load("assets/images/salad.jpeg")
         image = pygame.transform.scale(image, (30,30))
         super().__init__(x, y,  speed, point, image)
         
