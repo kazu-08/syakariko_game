@@ -2,9 +2,9 @@ import pygame
 import random
 from objects.cup import Cup
 from objects.JagaButter import JagaButter
-from objects.Salad import JagaSalad
-from objects.Tarako import JagaTarako
-from objects.Cheese import JagaCheese
+from objects.Salad import Salad
+from objects.Tarako import Tarako
+from objects.Cheese import Cheese
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -34,7 +34,7 @@ def main():
     for _ in range(10):
         x = random.randint(0, SCREEN_WIDTH - 30)
         y = random.randint(-600, -50)
-        jaga_type = random.choice([JagaButter, JagaSalad, JagaTarako, JagaCheese])
+        jaga_type = random.choice([JagaButter, Salad, Tarako, Cheese])
         jagariko_list.append(jaga_type(x, y))
 
     running = True

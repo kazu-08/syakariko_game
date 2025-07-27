@@ -2,10 +2,10 @@ import pygame
 from objects.Jaga import Jaga
 
 class JagaButter(Jaga):  # じゃがバター味
-    def __init__(self, x, y, color, speed, point):
+    def __init__(self, x, y,  speed, point):
         image = pygame.image.load("assets/images/jagabata.jpeg")
         image = pygame.transform.scale(image, (30,30))
-        super().__init__(x, y, color, speed, point, image)
+        super().__init__(x, y,  speed, point, image)
         
     def update(self, screen_width: int = 640):
         self.y += self.speed * 2
