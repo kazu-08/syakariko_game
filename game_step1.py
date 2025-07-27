@@ -10,7 +10,7 @@ from objects.Button import Button
 # 各じゃがりこクラスをリスト化（ランダム生成用）
 JAGA_CLASSES = [JagaButter, Cheese, Salad, Tarako]
 
-def game_step1(screen, manager):
+def run_step1(screen, manager):
     screen.fill((200, 255, 200))
 
     # タイトル表示
