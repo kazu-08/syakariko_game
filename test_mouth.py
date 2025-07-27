@@ -9,7 +9,7 @@ pygame.display.set_caption("Mouth Move Test")
 clock = pygame.time.Clock()
 
 # Mouth インスタンス（画像で表示）
-mouth = Mouth(x=SCREEN_WIDTH // 2 - 25, y=SCREEN_HEIGHT - 60, width=50, height=50)
+mouth = Mouth(x=300, y=450, width=300, height=150)
 
 # Button インスタンス（左右移動用）
 buttons = [
