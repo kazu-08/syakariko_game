@@ -35,12 +35,13 @@ while running:
                 elif action == "right":
                     cup.move_right()
 
+    # カップの描画
+    cup.draw(screen)
+
     # ボタンの描画
     for button in buttons:
         button.draw(screen)
 
-    # カップの描画
-    cup.draw(screen)
 
     pygame.display.flip()
     clock.tick(60)
