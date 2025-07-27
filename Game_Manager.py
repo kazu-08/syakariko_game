@@ -19,13 +19,12 @@ class GameManager:
     def start_step1(self):
         self.state = "step1"
         self.start_time = time.time()
-        self.jagariko_list = [1] * 10  # 仮のじゃがりこ10本
         # 味ごとに0本からスタート（ステップ1で集める）
         self.collected = {
-            'srd': 1,  # サラダ
-            'che': 2,  # チーズ
-            'jgb': 3,  # じゃがバター
-            'trc': 4   # たらこ
+            'srd': 0,  # サラダ
+            'che': 0,  # チーズ
+            'jgb': 0,  # じゃがバター
+            'trc': 0   # たらこ
         }
         # 実際のじゃがりこオブジェクトは step1 の run_step1 内で生成・追加される想定
         self.jagariko_list = []  # ステップ2で発射する分を後でここに入れる

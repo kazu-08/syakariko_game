@@ -7,7 +7,7 @@ pygame.display.set_caption("Salad Test")
 clock = pygame.time.Clock()
 
 # Saladインスタンス作成
-salad = Salad(x=185, y=0, color=0, speed=3, point=10)
+salad = Salad(x=185, y=0, speed=3, point=10)
 
 running = True
 while running:

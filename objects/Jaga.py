@@ -2,10 +2,9 @@ import pygame
 from abc import ABC, abstractmethod #抽象基底クラス
 
 class Jaga(ABC):
-    def __init__(self, x: int, y: int, color: int, speed: int, point: int, image: pygame.Surface):
+    def __init__(self, x: int, y:  int, speed: int, point: int, image: pygame.Surface):
         self.x = x #x軸
         self.y = y #y軸
-        self.color = color #色
         self.speed = speed #スピード
         self.point = point #得点数
         self.collect = 0  #カップに収集されたか
