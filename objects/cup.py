@@ -11,8 +11,8 @@ class Cup:
         current_dir = os.path.dirname(__file__)
         image_path = os.path.normpath(os.path.join(current_dir, "../assets/images/Cup.png"))
         original_img = pygame.image.load(image_path).convert_alpha()
-        self.image = pygame.transform.scale(original_img, (int(original_img.get_width() * 0.1),
-                                                           int(original_img.get_height() * 0.1)))
+        self.image = pygame.transform.scale(original_img, (int(original_img.get_width() * 0.05),
+                                                           int(original_img.get_height() * 0.05)))
 
         self.rect = self.image.get_rect()
         self.rect.center = (screen_width // 2, screen_height - 100)
