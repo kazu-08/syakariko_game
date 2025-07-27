@@ -1,13 +1,14 @@
 import pygame
 import random
-from objects.cup import cup
+from objects.cup import Cup
 from objects.JagaButter import JagaButter
 from objects.Cheese import Cheese
 from objects.Salad import Salad
 from objects.Tarako import Tarako
+from objects.Button import Button
 
 # Cupは1つでOK
-cup = cup(x=300, y=500)
+cup = Cup(x=300, y=500)
 
 # 各じゃがりこクラスをリスト化（ランダム生成用）
 JAGA_CLASSES = [JagaButter, Cheese, Salad, Tarako]
