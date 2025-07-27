@@ -7,9 +7,6 @@ from objects.Salad import Salad
 from objects.Tarako import Tarako
 from objects.Button import Button
 
-# Cupは1つでOK
-cup = Cup(x=300, y=500)
-
 # 各じゃがりこクラスをリスト化（ランダム生成用）
 JAGA_CLASSES = [JagaButter, Cheese, Salad, Tarako]
 
@@ -21,11 +18,14 @@ def game_step1(screen, manager):
     text = font.render("Step 1", True, (0, 100, 0))
     screen.blit(text, (100, 150))
 
-    # 初回のみじゃがりこを生成
+    # 初回のみcupとじゃがりこを生成
+    if not hasattr(manager, "cup"):
+        manager.cup = Cup(x=300, y=500)
+
     if not manager.jagariko_list:
         for _ in range(10):  # 10本生成（種類はランダム）
             JagaClass = random.choice(JAGA_CLASSES)
-            jagariko = JagaClass(x=random.randint(50, 550), y=0)
+            jagariko = JagaClass(x=random.randint(50, 550), y=0, speed=3, point=10)
             manager.jagariko_list.append(jagariko)
 
     # 各じゃがりこを落下・描画
@@ -34,6 +34,6 @@ def game_step1(screen, manager):
         jaga.draw(screen)
 
     # カップを描画
-    cup.draw(screen)
+    manager.cup.draw(screen)
 
     pygame.display.flip()
