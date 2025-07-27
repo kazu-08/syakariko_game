@@ -1,6 +1,6 @@
 import pygame
 import os
-from .Button import Button
+
 
 class Cup:
     def __init__(self, x=400, y=500, screen_width=800, screen_height=600):
@@ -42,12 +42,6 @@ if __name__ == "__main__":
 
     cup = Cup()
 
-    # ボタン作成
-    left_button = Button("left", 100, 550, 30, action="left")
-    right_button = Button("right", 200, 550, 30, action="right")
-    fire_button = Button("circle", 700, 550, 30, action="fire")
-    buttons = [left_button, right_button, fire_button]
-
     running = True
     while running:
         screen.fill((255, 255, 255))
@@ -56,20 +50,8 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 running = False
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                pos = pygame.mouse.get_pos()
-                for btn in buttons:
-                    result = btn.check_click(pos)
-                    if result == "left":
-                        cup.move_left()
-                    elif result == "right":
-                        cup.move_right()
-                    elif result == "fire":
-                        cup.shoot()
+     
 
-        # ボタン描画
-        for btn in buttons:
-            btn.draw(screen)
 
         # カップ描画
         cup.draw(screen)
