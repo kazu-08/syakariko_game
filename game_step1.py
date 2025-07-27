@@ -30,7 +30,7 @@ def run_step1(screen, manager):
 
     # 各じゃがりこを落下・描画
     for jaga in manager.jagariko_list:
-        jaga.fall()
+        jaga.update()
         jaga.draw(screen)
 
     # カップを描画
