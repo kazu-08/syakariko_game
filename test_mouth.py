@@ -1,44 +1,42 @@
+import unittest
 import pygame
 from objects.mouth import Mouth
-from objects.Button import Button
-from config import SCREEN_WIDTH, SCREEN_HEIGHT
+from config import SCREEN_HEIGHT  # SCREEN_HEIGHT を使用するよう修正
 
-pygame.init()
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Mouth Move Test")
-clock = pygame.time.Clock()
+class DummyJagariko:
+    def __init__(self, x, y, width=10, height=30):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
 
-# Mouth インスタンス（画像で表示）
-mouth = Mouth(x=300, y=450, width=300, height=150)
+class TestMouth(unittest.TestCase):
+    def setUp(self):
+        pygame.init()
+        self.screen = pygame.display.set_mode((640, 480))
+        self.mouth = Mouth(x=100)
 
-# Button インスタンス（左右移動用）
-buttons = [
-    Button("left", 100, SCREEN_HEIGHT - 30, 30, "left"),
-    Button("right", 200, SCREEN_HEIGHT - 30, 30, "right"),
-]
+    def test_draw_does_not_crash(self):
+        # 描画がクラッシュしないか確認
+        try:
+            self.mouth.draw(self.screen)
+        except Exception as e:
+            self.fail(f"draw() failed: {e}")
 
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    def test_mouth_position_bottom(self):
+        # デフォルト位置が画面下であることを確認
+        expected_y = SCREEN_HEIGHT - self.mouth.height - 10
+        self.assertEqual(self.mouth.y, expected_y)
 
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            pos = pygame.mouse.get_pos()
-            for btn in buttons:
-                action = btn.check_click(pos)
-                if action == "left":
-                    mouth.move("left")
-                elif action == "right":
-                    mouth.move("right")
+    def test_collision_true(self):
+        # 衝突がある場合
+        jaga = DummyJagariko(x=self.mouth.x + 5, y=self.mouth.y + 5)
+        self.assertTrue(self.mouth.is_in_mouth(jaga))
 
-    screen.fill((255, 255, 255))  # 背景白
-    mouth.draw(screen)
+    def test_collision_false(self):
+        # 衝突がない場合
+        jaga = DummyJagariko(x=self.mouth.x + 200, y=self.mouth.y + 200)
+        self.assertFalse(self.mouth.is_in_mouth(jaga))
 
-    for btn in buttons:
-        btn.draw(screen)
-
-    pygame.display.flip()
-    clock.tick(60)
-
-pygame.quit()
+if __name__ == "__main__":
+    unittest.main()

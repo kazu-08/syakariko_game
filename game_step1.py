@@ -17,10 +17,10 @@ JAGA_NAMES = {
 }
 
 def run_step1(screen, manager):
-    screen.fill((200, 255, 200))
+    screen.fill((200, 255, 200))  # 背景色
     font = pygame.font.SysFont(None, 36)
 
-    # 初回のみcup・じゃがりこ・ボタン・カウント生成
+    # 初期化（最初の1回だけ）
     if not hasattr(manager, "cup"):
         manager.cup = Cup(x=300, y=500, screen_width=screen.get_width())
 
@@ -36,46 +36,57 @@ def run_step1(screen, manager):
     if not hasattr(manager, "caught_counts"):
         manager.caught_counts = {name: 0 for name in JAGA_NAMES.keys()}
 
-    if len(manager.jagariko_list) < 1:
-        # 新しいじゃがりこを追加（1本ずつ）
+    # じゃがりこがいなければ新たに生成
+    if len(manager.jagariko_list) == 0:
         JagaClass = random.choice(JAGA_CLASSES)
         jagariko = JagaClass(x=random.randint(50, 550), y=0, speed=3, point=10)
         manager.jagariko_list.append(jagariko)
 
-    # 入力処理（マウス）
+    # --- 入力処理 ---
     for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            pos = pygame.mouse.get_pos()
-            for btn in manager.buttons:
-                result = btn.check_click(pos)
-                if result == "left":
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+
+    # 毎フレーム、マウスの状態を確認
+    mouse_pressed = pygame.mouse.get_pressed()
+    mouse_pos = pygame.mouse.get_pos()
+
+    if mouse_pressed[0]:  # 左クリックが押されている
+        for btn in manager.buttons:
+            if btn.rect.collidepoint(mouse_pos):
+                if btn.action == "left":
                     manager.cup.move_left()
-                elif result == "right":
+                elif btn.action == "right":
                     manager.cup.move_right()
 
-    # 各じゃがりこを落下・描画・衝突判定
+
+    # --- じゃがりこ更新 ---
     updated_list = []
     for jaga in manager.jagariko_list:
         jaga.update()
+
+        # カップに入ったか
         if jaga.rect.colliderect(manager.cup.rect):
             class_name = jaga.__class__.__name__
             manager.caught_counts[class_name] += 1
+        # 画面内に残っている場合はリストに残す
         elif jaga.rect.top < screen.get_height():
             updated_list.append(jaga)
-        # 落ち切ったら消えるが、拾われたものはカウントされている
+        # それ以外（画面外に落下）は削除（スキップ）
+
     manager.jagariko_list = updated_list
 
+    # --- 描画 ---
     for jaga in manager.jagariko_list:
         jaga.draw(screen)
 
-    # カップ描画
     manager.cup.draw(screen)
 
-    # ボタン描画
     for btn in manager.buttons:
         btn.draw(screen)
 
-    # 捕獲数を表示
+    # --- 捕獲数表示 ---
     y_offset = 10
     total = 0
     for class_name, count in manager.caught_counts.items():

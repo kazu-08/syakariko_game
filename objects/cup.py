@@ -18,12 +18,12 @@ class Cup:
         self.rect.center = (x, y)
 
     def move_left(self):
-        self.rect.x -= 10
+        self.rect.x -= 20
         if self.rect.left < 0:
             self.rect.left = 0
 
     def move_right(self):
-        self.rect.x += 10
+        self.rect.x += 20
         if self.rect.right > self.screen_width:
             self.rect.right = self.screen_width
 
