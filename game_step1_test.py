@@ -19,7 +19,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-        game_step1(screen, manager)
+        run_step1(screen, manager)
         clock.tick(60)  # 60 FPS
 
     pygame.quit()
