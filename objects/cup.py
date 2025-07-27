@@ -9,7 +9,10 @@ pygame.display.set_caption("画像を左右に動かす")
 
 # 現在のディレクトリと画像ファイルのパス
 current_dir = os.path.dirname(__file__)
-image_path = os.path.join(current_dir, "Cup.png")
+#image_path = os.path.join(current_dir, "assets/images/Cup.png")
+#つのさんごめん上の部分下のに変更した！
+image_path = os.path.normpath(os.path.join(current_dir, "../assets/images/Cup.png"))
+
 
 # 画像を読み込む（同じフォルダに 'object.png' を置いてね）
 original_img = pygame.image.load(image_path)

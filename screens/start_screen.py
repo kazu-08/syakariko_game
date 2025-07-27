@@ -1,8 +1,5 @@
-# screens/start_screen.py
 import pygame
-import sys
-from config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
-
+from objects.Button import Button
 
 def show_start_screen(screen, manager, height):
     screen.fill((255, 255, 255))
@@ -20,16 +17,14 @@ def show_start_screen(screen, manager, height):
 """
 def show_start_screen(screen, width, height):
     font_title = pygame.font.SysFont(None, 72)
-    font_start = pygame.font.SysFont(None, 36)
 
-    title_surface = font_title.render("しゃかりこゲーム", True, (0, 0, 0))
-    start_surface = font_start.render("スペースキーでスタート", True, (50, 50, 50))
+    title_surface = font_title.render("syakariko-game", True, (0, 0, 0))
+    start_button = Button(shape="circle", x=width // 2, y=height * 2 // 3, size=40, action="start")
 
     while True:
         screen.fill((255, 255, 255))
-
-        screen.blit(title_surface, title_surface.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3)))
-        screen.blit(start_surface, start_surface.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT * 2 // 3)))
+        screen.blit(title_surface, title_surface.get_rect(center=(width // 2, height // 3)))
+        start_button.draw(screen)
 
         pygame.display.flip()
 
@@ -39,4 +34,3 @@ def show_start_screen(screen, width, height):
                 sys.exit()
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 return  # スタート
-"""

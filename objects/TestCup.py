@@ -7,8 +7,13 @@ screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("画像を遠くに見せる")
 
 # 現在のディレクトリと画像ファイルのパス
+#current_dir = os.path.dirname(__file__)
+#mage_path = os.path.join(current_dir, "Cup.png")
+
+# 現在のディレクトリと画像ファイルのパス（1つ上の階層にある assets/images/Cup.png を指定）
 current_dir = os.path.dirname(__file__)
-image_path = os.path.join(current_dir, "Cup.png")
+image_path = os.path.join(current_dir, "..", "assets", "images", "Cup.png")
+image_path = os.path.abspath(image_path)  # 絶対パスに変換（推奨）
 
 # 画像を読み込み → サイズ変更（例：元の半分に縮小）
 original_img = pygame.image.load(image_path)
