@@ -1,48 +1,28 @@
+# cup.py
 import pygame
-import sys
 import os
 
-# 初期化
-pygame.init()
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption("画像を左右に動かす")
+class Cup:
+    def __init__(self, x=400, y=300):
+        current_dir = os.path.dirname(__file__)
+        image_path = os.path.normpath(os.path.join(current_dir, "../assets/images/Cup.png"))
 
-# 現在のディレクトリと画像ファイルのパス
-current_dir = os.path.dirname(__file__)
-#image_path = os.path.join(current_dir, "assets/images/Cup.png")
-#つのさんごめん上の部分下のに変更した！
-image_path = os.path.normpath(os.path.join(current_dir, "../assets/images/Cup.png"))
+        # 画像読み込みと縮小（10%）
+        original_img = pygame.image.load(image_path)
+        self.image = pygame.transform.scale(
+            original_img,
+            (int(original_img.get_width() * 0.1), int(original_img.get_height() * 0.1))
+        )
 
+        # 表示位置を設定
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
 
-# 画像を読み込む（同じフォルダに 'object.png' を置いてね）
-original_img = pygame.image.load(image_path)
-small_img = pygame.transform.scale(original_img, (int(original_img.get_width() * 0.1),
-                                                  int(original_img.get_height() * 0.1)))
+    def move_left(self, speed=5):
+        self.rect.x -= speed
 
-object_rect = small_img.get_rect()
-object_rect.center = (400, 300)  # 初期位置
+    def move_right(self, speed=5):
+        self.rect.x += speed
 
-# メインループ
-clock = pygame.time.Clock()
-running = True
-while running:
-    screen.fill((255, 255, 255))  # 背景を白に
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    # キーの状態を取得 ここはテストできてないからごめんね
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
-        object_rect.x -= 5
-    if keys[pygame.K_RIGHT]:
-        object_rect.x += 5
-
-    # 画像を描画
-    screen.blit(small_img, object_rect)
-    pygame.display.flip()
-    clock.tick(60)
-
-pygame.quit()
-sys.exit()
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
