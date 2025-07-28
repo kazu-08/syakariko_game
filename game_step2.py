@@ -23,12 +23,11 @@ def run_step2(screen, manager):
     screen_height = screen.get_height()
 
     # 初期化
-    manager.cup = Cup(x=300, y=10, screen_width=screen.get_width())
+    manager.cup = Cup(x=300, y=0, screen_width=screen.get_width())
 
-    if not hasattr(manager, "mouth"):
-        # 画面上部にmouthを配置
-        manager.mouth = Mouth(screen, x=screen_width // 2 - 50, y=50)
-
+   
+    # 画面上部にmouthを配置
+    manager.mouth = Mouth(screen, x=30, y=50)
    
     # 丸いボタンだけにする
     manager.buttons = [
