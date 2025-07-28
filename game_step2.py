@@ -24,11 +24,11 @@ def run_step2(screen, manager):
         # 画面上部にmouthを配置
         manager.mouth = Mouth(screen, x=screen_width // 2 - 50, y=50)
 
-    if not hasattr(manager, "buttons"):
-        # 丸いボタンだけにする
-        manager.buttons = [
-            Button("circle", screen_width - 100, screen_height - 60, 30, action="shoot")
-        ]
+   
+    # 丸いボタンだけにする
+    manager.buttons = [
+        Button("circle", screen_width - 100, screen_height - 60, 30, action="shoot")
+    ]
 
     if not hasattr(manager, "shots"):
         manager.shots = []
