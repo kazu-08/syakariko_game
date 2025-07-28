@@ -18,10 +18,7 @@ def run_step2(screen, manager):
     screen_height = screen.get_height()
 
     # 初期化
-    if not hasattr(manager, "cup"):
-        x = screen_width // 2
-        y = screen_height - 100  # 画面下部にCupを配置
-        manager.cup = Cup(x=x, y=y, screen_width=screen_width, screen_height=screen_height)
+    manager.cup = Cup(x=300, y=10, screen_width=screen.get_width())
 
     if not hasattr(manager, "mouth"):
         # 画面上部にmouthを配置

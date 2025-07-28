@@ -22,7 +22,7 @@ def run_step1(screen, manager):
 
     # 初期化（最初の1回だけ）
     if not hasattr(manager, "cup"):
-        manager.cup = Cup(x=300, y=500, screen_width=screen.get_width())
+        manager.cup = Cup(x=300, y=400, screen_width=screen.get_width())
 
     if not hasattr(manager, "buttons"):
         manager.buttons = [

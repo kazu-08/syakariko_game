@@ -18,7 +18,8 @@ class Cup:
         )
 
         self.rect = self.image.get_rect()
-        self.rect.center = (x, y)
+        self.rect.centerx = x
+        self.rect.top = y
 
     def update(self):
         self.rect.x += self.speed * self.direction
@@ -48,11 +49,14 @@ class Cup:
         screen.blit(self.image, self.rect)
 
     def flip_vertical(self):
+        top = self.rect.top
+        centerx = self.rect.centerx
         self.image = pygame.transform.flip(self.image, False, True)
-        # flip後にrectを再取得し、位置を保つ
-        center = self.rect.center
         self.rect = self.image.get_rect()
-        self.rect.center = center
+        self.rect.top = top
+        self.rect.centerx = centerx
+
+
 
 # テスト実行時のみ動作確認
 if __name__ == "__main__":

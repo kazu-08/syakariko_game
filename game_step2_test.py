@@ -23,7 +23,7 @@ def run_step2(screen, manager):
 
     # 初期化
     if not hasattr(manager, "cup"):
-        manager.cup = Cup(x=300, y=500, screen_width=screen.get_width())
+        manager.cup = Cup(x=100, y=500, screen_width=screen.get_width())
 
     if not hasattr(manager, "mouth"):
         manager.mouth = Mouth(x=300, y=100)
