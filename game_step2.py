@@ -98,6 +98,10 @@ def run_step2(screen, manager):
     score_txt = font.render(f"Score: {manager.score}", True, (0, 0, 0))
     screen.blit(score_txt, (10, 10))
 
+    # 残りのじゃがりこ本数を表示 ← 追加
+    remaining_txt = font.render(f"Jaga: {len(manager.jagariko_list)}", True, (0, 0, 0))
+    screen.blit(remaining_txt, (10, 50))
+
     # ✅ 発射も終了していたらゲーム終了
     if not manager.jagariko_list and not manager.shots:
         manager.state = "end"
