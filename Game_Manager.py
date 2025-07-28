@@ -48,7 +48,7 @@ class GameManager:
         elif self.state == "step2":
             elapsed = time.time() - self.start_time
             run_step2(self.screen, self)
-            if elapsed > 15 or len(self.jagariko_list) == 0:
+            if elapsed > 15 or (len(self.jagariko_list) == 0 and len(self.shots) == 0):
                 self.state = "end"
         
         elif self.state == "end":

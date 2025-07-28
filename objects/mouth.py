@@ -20,5 +20,4 @@ class Mouth:
 
     def is_in_mouth(self, Jaga):
         mouth_rect = pygame.Rect(self.x, self.y, self.width, self.height)
-        jaga_rect = pygame.Rect(Jaga.x, Jaga.y, Jaga.width, Jaga.height)
-        return mouth_rect.colliderect(jaga_rect)
+        return mouth_rect.colliderect(Jaga.rect)

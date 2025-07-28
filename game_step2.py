@@ -8,7 +8,12 @@ from objects.Salad import Salad
 from objects.Tarako import Tarako
 from objects.Button import Button
 
-JAGA_CLASSES = [JagaButter, Cheese, Salad, Tarako]
+JAGA_CLASSES = {
+    'srd': Salad,
+    'che': Cheese,
+    'jgb': JagaButter,
+    'trc': Tarako
+}
 
 def run_step2(screen, manager):
     screen.fill((255, 255, 240))
@@ -46,19 +51,18 @@ def run_step2(screen, manager):
             for btn in manager.buttons:
                 result = btn.check_click(pos)
                 if result == "shoot":
-                    # cupの中央上から上向きに発射
-                    JagaClass = random.choice(JAGA_CLASSES)
-                    new_jaga = JagaClass(
-                        x=manager.cup.rect.centerx,
-                        y=manager.cup.rect.top,
-                        speed=-7,  # 上向きに飛ばす
-                        point=10
-                    )
-                    manager.shots.append(new_jaga)
-
-    # cupの左右自動移動（あれば）
-    if hasattr(manager, "cup"):
-        manager.cup.update()
+                    if manager.jagariko_list:
+                        flavor = manager.jagariko_list.pop(0)
+                        JagaClass = JAGA_CLASSES.get(flavor, Salad)
+                        new_jaga = JagaClass(
+                            x=manager.cup.rect.centerx,
+                            y=manager.cup.rect.bottom,
+                            speed=7,
+                            point=10
+                        )
+                        manager.shots.append(new_jaga)
+                    else:
+                        print("発射できるじゃがりこがありません")
 
     # 発射物の更新とmouthとの衝突判定
     updated_shots = []
