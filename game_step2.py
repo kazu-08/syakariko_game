@@ -99,4 +99,8 @@ def run_step2(screen, manager):
     score_txt = font.render(f"Score: {manager.score}", True, (0, 0, 0))
     screen.blit(score_txt, (10, 10))
 
+    # ✅ 発射も終了していたらゲーム終了
+    if not manager.jagariko_list and not manager.shots:
+        manager.state = "end"
+
     pygame.display.flip()
