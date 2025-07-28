@@ -49,12 +49,11 @@ class Cup:
         screen.blit(self.image, self.rect)
 
     def flip_vertical(self):
-        top = self.rect.top
-        centerx = self.rect.centerx
+        print("上下反転 実行")  # デバッグ表示
+
+        original_center = self.rect.center
         self.image = pygame.transform.flip(self.image, False, True)
-        self.rect = self.image.get_rect()
-        self.rect.top = top
-        self.rect.centerx = centerx
+        self.rect = self.image.get_rect(center=original_center)
 
 
 

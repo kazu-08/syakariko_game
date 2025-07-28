@@ -19,20 +19,20 @@ def run_step2(screen, manager):
     screen.fill((255, 255, 240))
     font = pygame.font.SysFont(None, 36)
 
-    screen_width = screen.get_width()
-    screen_height = screen.get_height()
-
     # 初期化
-    manager.cup = Cup(x=350, y=0, screen_width=screen.get_width())
+    if not hasattr(manager, "cup"):
+        manager.cup.flip_vertical()
+        manager.cup = Cup(x=100, y=100, screen_width=screen.get_width())
 
-   
-    # 画面上部にmouthを配置
-    manager.mouth = Mouth(screen, x=0, y=450)
-   
-    # 丸いボタンだけにする
-    manager.buttons = [
-        Button("circle", screen_width - 100, screen_height - 60, 30, action="shoot")
-    ]
+    if not hasattr(manager, "mouth"):
+         manager.mouth = Mouth(screen, x=0, y=450)
+
+    if not hasattr(manager, "buttons"):
+        manager.buttons = [
+            Button("←", 100, 550, 30, action="mouth_left"),
+            Button("→", 200, 550, 30, action="mouth_right"),
+            Button("発射", 500, 550, 40, action="shoot")
+        ]
 
     if not hasattr(manager, "shots"):
         manager.shots = []
@@ -49,38 +49,27 @@ def run_step2(screen, manager):
             pos = pygame.mouse.get_pos()
             for btn in manager.buttons:
                 result = btn.check_click(pos)
-                if result == "shoot":
-                    if manager.jagariko_list:
-                        flavor = manager.jagariko_list.pop(0)
-                        JagaClass = JAGA_CLASSES.get(flavor, Salad)
+                if result == "mouth_left":
+                    manager.mouth.move("left")
+                elif result == "mouth_right":
+                    manager.mouth.move("right")
+                elif result == "shoot":
+                    JagaClass = random.choice(JAGA_CLASSES)
+                    new_jaga = JagaClass(
+                        x=manager.cup.rect.centerx,
+                        y=manager.cup.rect.top,
+                        speed=-7,
+                        point=10
+                    )
+                    manager.shots.append(new_jaga)
 
-                        # 味からクラスを選択
-                        if flavor == "srd":
-                            JagaClass = Salad
-                        elif flavor == "che":
-                            JagaClass = Cheese
-                        elif flavor == "jgb":
-                            JagaClass = JagaButter
-                        elif flavor == "trc":
-                            JagaClass = Tarako
+    # ✅ Cupを自動で左右に動かす！
+    manager.cup.update()
 
-                        new_jaga = JagaClass(
-                            x=manager.cup.rect.centerx,
-                            y=manager.cup.rect.bottom,
-                            speed=7,
-                            point=10
-                        )
-                        manager.shots.append(new_jaga)
-                    else:
-                        print("発射できるじゃがりこがありません")
-
-    # 発射物の更新とmouthとの衝突判定
+    # じゃがりこ発射物の更新と判定
     updated_shots = []
     for jaga in manager.shots:
-        jaga.y += jaga.speed  # 上に移動
-
-        jaga.rect.topleft = (jaga.x, jaga.y)   
-
+        jaga.y += jaga.speed
         if manager.mouth.is_in_mouth(jaga):
             manager.score += jaga.point
         elif jaga.y > 0:
@@ -97,16 +86,7 @@ def run_step2(screen, manager):
     for btn in manager.buttons:
         btn.draw(screen)
 
-    # スコア表示
     score_txt = font.render(f"Score: {manager.score}", True, (0, 0, 0))
     screen.blit(score_txt, (10, 10))
-
-    # 残りのじゃがりこ本数を表示 ← 追加
-    remaining_txt = font.render(f"Jaga: {len(manager.jagariko_list)}", True, (0, 0, 0))
-    screen.blit(remaining_txt, (10, 50))
-
-    # ✅ 発射も終了していたらゲーム終了
-    if not manager.jagariko_list and not manager.shots:
-        manager.state = "end"
 
     pygame.display.flip()
