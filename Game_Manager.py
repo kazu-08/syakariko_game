@@ -69,7 +69,7 @@ class GameManager:
                 self.screen.get_height(),
                 self.score
             )
-            if result is None:
+            if result in [None, "start"]:
                 self.reset_game()
 
 
@@ -85,4 +85,11 @@ class GameManager:
         self.state = "start"
         self.start_time = None
         self.jagariko_list = []
+        self.collected = {
+            'srd': 0,
+            'che': 0,
+            'jgb': 0,
+            'trc': 0
+        }
         self.score = 0
+        self.shots = []
