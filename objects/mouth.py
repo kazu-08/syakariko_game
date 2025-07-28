@@ -4,7 +4,7 @@ class Mouth:
     def __init__(self, screen, x=0, y=None, width=800):
         self.screen = screen
         self.width = width
-        self.image = pygame.image.load("assets/images/mouth.png").convert_alpha()
+        self.image = pygame.image.load("assets/images/kuti.jpg").convert_alpha()
         self.image = pygame.transform.scale(self.image, (self.width, self.image.get_height()))
         self.height = self.image.get_height()
         self.x = x
