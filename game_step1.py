@@ -70,6 +70,17 @@ def run_step1(screen, manager):
         if jaga.rect.colliderect(manager.cup.rect):
             class_name = jaga.__class__.__name__
             manager.caught_counts[class_name] += 1
+
+            # ✅ GameManager.collected にも反映させる
+            if class_name == "JagaButter":
+                manager.collected["jgb"] += 1
+            elif class_name == "Cheese":
+                manager.collected["che"] += 1
+            elif class_name == "Salad":
+                manager.collected["srd"] += 1
+            elif class_name == "Tarako":
+                manager.collected["trc"] += 1
+
         # 画面内に残っている場合はリストに残す
         elif jaga.rect.top < screen.get_height():
             updated_list.append(jaga)

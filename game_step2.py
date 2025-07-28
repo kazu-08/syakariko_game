@@ -54,6 +54,17 @@ def run_step2(screen, manager):
                     if manager.jagariko_list:
                         flavor = manager.jagariko_list.pop(0)
                         JagaClass = JAGA_CLASSES.get(flavor, Salad)
+
+                        # 味からクラスを選択
+                        if flavor == "srd":
+                            JagaClass = Salad
+                        elif flavor == "che":
+                            JagaClass = Cheese
+                        elif flavor == "jgb":
+                            JagaClass = JagaButter
+                        elif flavor == "trc":
+                            JagaClass = Tarako
+
                         new_jaga = JagaClass(
                             x=manager.cup.rect.centerx,
                             y=manager.cup.rect.bottom,

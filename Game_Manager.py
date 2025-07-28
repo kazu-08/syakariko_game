@@ -33,6 +33,17 @@ class GameManager:
         self.state = "step2"
         self.start_time = time.time()
 
+        # step1 で集めた分だけ発射用にリスト化
+        self.jagariko_list = (
+            ["srd"] * self.collected["srd"] +
+            ["che"] * self.collected["che"] +
+            ["jgb"] * self.collected["jgb"] +
+            ["trc"] * self.collected["trc"]
+        )
+        print(f"jagariko_list の長さ: {len(self.jagariko_list)}")  # ← 確認用
+
+        self.shots = []  # 発射されたじゃがりこ
+
     def update(self):
         if self.state == "start":
             result = show_start_screen(self.screen, self.screen.get_width(), self.screen.get_height())
@@ -50,7 +61,7 @@ class GameManager:
             run_step2(self.screen, self)
             if elapsed > 15 or (len(self.jagariko_list) == 0 and len(self.shots) == 0):
                 self.state = "end"
-        
+
         elif self.state == "end":
             result = show_end_screen(
                 self.screen,
@@ -61,17 +72,6 @@ class GameManager:
             if result is None:
                 self.reset_game()
 
-        elif self.state == "step1":
-            elapsed = time.time() - self.start_time
-            run_step1(self.screen, self)
-            if elapsed > 15:
-                self.start_step2()
-
-        elif self.state == "step2":
-            elapsed = time.time() - self.start_time
-            run_step2(self.screen, self)
-            if elapsed > 15 or len(self.jagariko_list) == 0:
-                self.show_end_screen()
 
     def handle_event(self, event):
         if self.state == "start":
