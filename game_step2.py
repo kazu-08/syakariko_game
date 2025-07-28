@@ -78,6 +78,9 @@ def run_step2(screen, manager):
     updated_shots = []
     for jaga in manager.shots:
         jaga.y += jaga.speed  # 上に移動
+
+        jaga.rect.topleft = (jaga.x, jaga.y)   
+
         if manager.mouth.is_in_mouth(jaga):
             manager.score += jaga.point
         elif jaga.y > 0:

@@ -9,14 +9,21 @@ class Mouth:
         self.height = self.image.get_height()
         self.x = x
 
-        # 👇 実際の当たり判定範囲を口の部分だけに限定（調整してください）
-        self.hitbox = pygame.Rect(300,300,300,100)  # x, y, width, height は目視で調整
-
+       
         # yが指定されていない場合は画面下に合わせる
         if y is None:
             self.y = screen.get_height() - self.height
         else:
             self.y = y
+
+        # 👇 画像の位置・サイズをもとに当たり判定を自動で設定（例：画像中央下）
+        hitbox_width = 400
+        hitbox_height = int(self.height * 0.2)
+        hitbox_x = self.x+300
+        hitbox_y = self.y + 50
+
+        self.hitbox = pygame.Rect(hitbox_x, hitbox_y, hitbox_width, hitbox_height)
+
 
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
