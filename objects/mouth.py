@@ -9,6 +9,9 @@ class Mouth:
         self.height = self.image.get_height()
         self.x = x
 
+        # 👇 実際の当たり判定範囲を口の部分だけに限定（調整してください）
+        self.hitbox = pygame.Rect(300,300,300,100)  # x, y, width, height は目視で調整
+
         # yが指定されていない場合は画面下に合わせる
         if y is None:
             self.y = screen.get_height() - self.height
@@ -18,6 +21,9 @@ class Mouth:
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
 
+        # ⬇️ 当たり判定の範囲を赤枠で描画（デバッグ用）
+        pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
+
+
     def is_in_mouth(self, Jaga):
-        mouth_rect = pygame.Rect(self.x, self.y, self.width, self.height)
-        return mouth_rect.colliderect(Jaga.rect)
+        return self.hitbox.colliderect(Jaga.rect)
