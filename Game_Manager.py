@@ -104,13 +104,16 @@ class GameManager:
         self.shots = []  # 発射したじゃがりこ
         self.score = 0
         self.collected = {
-            
-            
-            
             'srd': 0,
             'che': 0,
             'jgb': 0,
             'trc': 0
+        }
+        self.caught_counts = {  # ← ここを追加！
+            "JagaButter": 0,
+            "Cheese": 0,
+            "Salad": 0,
+            "Tarako": 0
         }
 
         self.score = 0
