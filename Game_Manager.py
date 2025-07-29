@@ -2,6 +2,7 @@
 import time
 from screens.start_screen import show_start_screen
 from screens.end_screen import show_end_screen
+from screens.transition_screen import show_transition_screen
 from game_step1 import run_step1
 from game_step2 import run_step2
 from config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
@@ -49,11 +50,25 @@ class GameManager:
             result = show_start_screen(self.screen, self.screen.get_width(), self.screen.get_height())
             if result == "start":
                 self.start_step1()
-
+                
         elif self.state == "step1":
             elapsed = time.time() - self.start_time
             run_step1(self.screen, self)
+
             if elapsed > 15:
+                # 中間画面表示
+                show_transition_screen(
+                    self.screen,
+                    self.screen.get_width(),
+                    self.screen.get_height(),
+                    "Step1clear!",
+                    {
+                        "Salad": self.collected["srd"],
+                        "Cheese": self.collected["che"],
+                        "Jagabutter": self.collected["jgb"],
+                        "Tarako": self.collected["trc"]
+                    }
+                )
                 self.start_step2()
 
         elif self.state == "step2":
@@ -69,7 +84,7 @@ class GameManager:
                 self.screen.get_height(),
                 self.score
             )
-            if result in [None, "start"]:
+            if result in [None, "start","restart","retry"]:
                 self.reset_game()
 
 
@@ -82,12 +97,16 @@ class GameManager:
         self.score += points
 
     def reset_game(self):
+        print("game reset")
         self.state = "start"
         self.start_time = None
         self.jagariko_list = []
         self.shots = []  # 発射したじゃがりこ
         self.score = 0
         self.collected = {
+            
+            
+            
             'srd': 0,
             'che': 0,
             'jgb': 0,
@@ -95,4 +114,5 @@ class GameManager:
         }
 
         self.score = 0
+        print(f"reser_score: {self.score}")
         self.shots = []
