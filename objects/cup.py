@@ -51,10 +51,16 @@ class Cup:
     def flip_vertical(self):
         print("updown")  # デバッグ表示
 
-        original_center = self.rect.center
+        # 画像を上下反転
         self.image = pygame.transform.flip(self.image, False, True)
-        self.rect = self.image.get_rect(center=original_center)
 
+        # 反転後、位置を明示的に更新
+        old_centerx = self.rect.centerx
+        self.rect = self.image.get_rect()
+        self.rect.centerx = old_centerx
+
+        # ✅ カップを画面上部に固定（必要に応じて微調整）
+        self.rect.top = 50
 
 
 # テスト実行時のみ動作確認

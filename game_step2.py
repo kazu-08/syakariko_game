@@ -21,8 +21,8 @@ def run_step2(screen, manager):
 
     # 初期化
     if not hasattr(manager, "cup"):
-        manager.cup.flip_vertical()
-        manager.cup = Cup(x=100, y=100, screen_width=screen.get_width())
+        manager.cup = Cup(x=400, y=50, screen_width=screen.get_width())  # ✅ 先に作って
+        manager.cup.flip_vertical()  # ✅ あとで反転
 
     if not hasattr(manager, "mouth"):
          manager.mouth = Mouth(screen, x=0, y=450)
