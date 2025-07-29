@@ -20,9 +20,13 @@ def run_step2(screen, manager):
     font = pygame.font.SysFont(None, 36)
 
     # 初期化
+<<<<<<< HEAD
     if not hasattr(manager, "cup"):
         manager.cup.flip_vertical()
         manager.cup = Cup(x=100, y=100, screen_width=screen.get_width())
+=======
+    manager.cup = Cup(x=350, y=400, screen_width=screen.get_width())
+>>>>>>> a5525f8 (カップの座標)
 
     if not hasattr(manager, "mouth"):
          manager.mouth = Mouth(screen, x=0, y=450)
