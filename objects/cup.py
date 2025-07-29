@@ -2,7 +2,7 @@ import pygame
 import os
 
 class Cup:
-    def __init__(self, x=400, y=500, screen_width=800, screen_height=600):
+    def __init__(self, x=400, y=100, screen_width=800, screen_height=600):
         self.screen_width = screen_width
         self.screen_height = screen_height
         self.direction = 1  # 右に動く（-1で左）
