@@ -34,7 +34,7 @@ def run_step2(screen, manager):
 
  
     manager.buttons = [
-        Button("circle", 80, 540, 40, action="shoot")  # ← 例：上の方・中央に配置
+        Button("circle", 80, 450, 40, action="shoot")  # ← 例：上の方・中央に配置
     ]
 
     if not hasattr(manager, "shots"):
@@ -96,7 +96,6 @@ def run_step2(screen, manager):
 
     # 描画
     manager.cup.draw(screen)
-    manager.mouth.update()
     manager.mouth.draw(screen)
 
     for shot in manager.shots:
