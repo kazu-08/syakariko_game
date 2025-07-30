@@ -84,11 +84,13 @@ def run_step2(screen, manager):
     # じゃがりこ発射物の更新と判定
     updated_shots = []
     for jaga in manager.shots:
-        jaga.y += jaga.speed
+        jaga.update() 
+
         if manager.mouth.is_in_mouth(jaga):
             manager.score += jaga.point
-        elif jaga.y > 0:
+        elif not jaga.is_off_screen(screen.get_height()):
             updated_shots.append(jaga)
+
     manager.shots = updated_shots
 
     # 描画

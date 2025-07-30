@@ -12,5 +12,5 @@ class Tarako(Jaga):  # たらこ味
 
     def update(self, screen_width: int = SCREEN_WIDTH):
         self.y += self.speed *2
-        self.rect.y = self.y
+        self.rect.topleft = (self.x, self.y)
         self.visible = self.y > self.reveal_y
