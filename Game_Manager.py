@@ -41,6 +41,7 @@ class GameManager:
             ["jgb"] * self.collected["jgb"] +
             ["trc"] * self.collected["trc"]
         )
+        self.remaining_shots = len(self.jagariko_list)
         print(f"jagariko_list の長さ: {len(self.jagariko_list)}")  # ← 確認用
 
         self.shots = []  # 発射されたじゃがりこ

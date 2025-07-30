@@ -63,16 +63,20 @@ def run_step2(screen, manager):
     for btn in manager.buttons:
         if btn.rect.collidepoint(mouse_pos) and btn.action == "shoot":
             if mouse_pressed[0] and (current_time - manager.last_shot_time > cooldown):
-                print("🔫 発射（毎フレーム検出）")
-                JagaClass = random.choice(list(JAGA_CLASSES.values()))
-                new_jaga = JagaClass(
-                    x=manager.cup.rect.centerx,
-                    y=manager.cup.rect.bottom,
-                    speed=7,
-                    point=10
-                )
-                manager.shots.append(new_jaga)
-                manager.last_shot_time = current_time
+                if hasattr(manager, "remaining_shots") and manager.remaining_shots > 0:
+                    print("🔫 発射（残り: ", manager.remaining_shots, "発）")
+                    JagaClass = random.choice(list(JAGA_CLASSES.values()))
+                    new_jaga = JagaClass(
+                        x=manager.cup.rect.centerx,
+                        y=manager.cup.rect.bottom,
+                        speed=7,
+                        point=10
+                    )
+                    manager.shots.append(new_jaga)
+                    manager.last_shot_time = current_time
+                    manager.remaining_shots -= 1  # ← 弾を減らす
+                else:
+                    print("❌ 弾切れ！")
 
     # ✅ Cupを自動で左右に動かす！
     manager.cup.update()
