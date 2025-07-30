@@ -1,5 +1,6 @@
 import pygame
 import random
+import time
 from objects.cup import Cup
 from objects.mouth import Mouth
 from objects.JagaButter import JagaButter
@@ -33,7 +34,7 @@ def run_step2(screen, manager):
 
  
     manager.buttons = [
-        Button("circle", 400, 100, 40, action="shoot")  # ← 例：上の方・中央に配置
+        Button("circle", 400, 200, 40, action="shoot")  # ← 例：上の方・中央に配置
     ]
 
     if not hasattr(manager, "shots"):
@@ -42,28 +43,36 @@ def run_step2(screen, manager):
     if not hasattr(manager, "score"):
         manager.score = 0
 
-    # イベント処理
+    # --- イベント処理（終了イベントだけ処理） ---
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            pos = pygame.mouse.get_pos()
-            for btn in manager.buttons:
-                result = btn.check_click(pos)
-                if result == "mouth_left":
-                    manager.mouth.move("left")
-                elif result == "mouth_right":
-                    manager.mouth.move("right")
-                elif result == "shoot":
-                    JagaClass = random.choice(list(JAGA_CLASSES.values()))
-                    new_jaga = JagaClass(
-                        x=manager.cup.rect.centerx,
-                        y=manager.cup.rect.bottom,
-                        speed=7,
-                        point=10
-                    )
-                    manager.shots.append(new_jaga)
+
+    # --- 毎フレームでマウスの状態をチェック ---
+    mouse_pressed = pygame.mouse.get_pressed()
+    mouse_pos = pygame.mouse.get_pos()
+
+    # 初期化（最初の一回だけ）
+    if not hasattr(manager, "last_shot_time"):
+        manager.last_shot_time = 0
+
+    cooldown = 0.3  # 発射クールダウン秒
+    current_time = time.time()
+
+    for btn in manager.buttons:
+        if btn.rect.collidepoint(mouse_pos) and btn.action == "shoot":
+            if mouse_pressed[0] and (current_time - manager.last_shot_time > cooldown):
+                print("🔫 発射（毎フレーム検出）")
+                JagaClass = random.choice(list(JAGA_CLASSES.values()))
+                new_jaga = JagaClass(
+                    x=manager.cup.rect.centerx,
+                    y=manager.cup.rect.bottom,
+                    speed=7,
+                    point=10
+                )
+                manager.shots.append(new_jaga)
+                manager.last_shot_time = current_time
 
     # ✅ Cupを自動で左右に動かす！
     manager.cup.update()
