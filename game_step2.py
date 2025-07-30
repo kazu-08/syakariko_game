@@ -106,4 +106,8 @@ def run_step2(screen, manager):
     score_txt = font.render(f"Score: {manager.score}", True, (0, 0, 0))
     screen.blit(score_txt, (10, 10))
 
+    # 残りじゃがりこ本数表示（毎フレーム更新されるように）
+    remaining_txt = font.render(f"Jaga: {len(manager.jagariko_list)} ", True, (0, 0, 0))
+    screen.blit(remaining_txt, (10, 40))
+
     pygame.display.flip()
