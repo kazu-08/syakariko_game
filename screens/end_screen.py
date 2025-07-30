@@ -6,7 +6,7 @@ from config import init_screen, SCREEN_WIDTH, SCREEN_HEIGHT
 
 def show_end_screen(screen, width, height, score):
     font_title = pygame.font.SysFont(None, 64)
-    font_score = pygame.font.SysFont(None, 48)
+    font_score = pygame.font.SysFont("segoeui", 48)
     font_restart = pygame.font.SysFont(None, 32)
 
     title_surface = font_title.render("gameover", True, (0, 0, 0))

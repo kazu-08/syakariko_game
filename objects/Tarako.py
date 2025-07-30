@@ -3,9 +3,10 @@ from objects.Jaga import Jaga
 from config import SCREEN_WIDTH
 
 class Tarako(Jaga):  # たらこ味
-    def __init__(self, x, y,  speed, point, reveal_y=200):
+    def __init__(self, x, y,  speed, point=None, reveal_y=200):
         image = pygame.image.load("assets/images/tarako.jpeg")
         image = pygame.transform.scale(image, (10, 50))
+        point = 40 if point is None else point
         super().__init__(x, y,  speed, point, image)
         self.reveal_y = reveal_y
         self.visible = False 
