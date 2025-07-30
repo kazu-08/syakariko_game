@@ -22,7 +22,11 @@ def run_step2(screen, manager):
     # 初期化
     if not hasattr(manager, "cup"):
         manager.cup = Cup(x=400, y=50, screen_width=screen.get_width())  # ✅ 先に作って
-        manager.cup.flip_vertical()  # ✅ あとで反転
+    
+    # ステップ2でのみ反転（ただし1回だけ）
+    if not hasattr(manager, "cup_flipped_for_step2"):
+        manager.cup.flip_vertical()
+        manager.cup_flipped_for_step2 = True
 
     if not hasattr(manager, "mouth"):
          manager.mouth = Mouth(screen, x=0, y=450)
@@ -55,7 +59,7 @@ def run_step2(screen, manager):
                     JagaClass = random.choice(list(JAGA_CLASSES.values()))
                     new_jaga = JagaClass(
                         x=manager.cup.rect.centerx,
-                        y=manager.cup.rect.top,
+                        y=manager.cup.rect.bottom,
                         speed=-7,
                         point=10
                     )

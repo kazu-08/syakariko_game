@@ -119,3 +119,9 @@ class GameManager:
         self.score = 0
         print(f"reser_score: {self.score}")
         self.shots = []
+
+        if hasattr(self, "cup"):
+            del self.cup
+        if hasattr(self, "cup_flipped_for_step2"):
+            del self.cup_flipped_for_step2
+
