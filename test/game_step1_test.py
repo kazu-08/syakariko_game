@@ -1,5 +1,5 @@
 import pygame
-from game_step1 import run_step1
+from screens.game_step1 import run_step1
 
 class DummyManager:
     def __init__(self):
