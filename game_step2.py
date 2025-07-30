@@ -113,3 +113,7 @@ def run_step2(screen, manager):
     screen.blit(remaining_txt, (10, 40))
 
     pygame.display.flip()
+
+    # --- 残弾ゼロ＆画面上にじゃがりこが残っていない場合、終了
+    if manager.remaining_shots == 0 and len(manager.shots) == 0:
+        manager.state = "end"
