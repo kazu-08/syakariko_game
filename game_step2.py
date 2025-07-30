@@ -60,7 +60,7 @@ def run_step2(screen, manager):
                     new_jaga = JagaClass(
                         x=manager.cup.rect.centerx,
                         y=manager.cup.rect.bottom,
-                        speed=-7,
+                        speed=7,
                         point=10
                     )
                     manager.shots.append(new_jaga)
