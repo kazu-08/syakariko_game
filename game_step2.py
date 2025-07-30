@@ -27,12 +27,10 @@ def run_step2(screen, manager):
     if not hasattr(manager, "mouth"):
          manager.mouth = Mouth(screen, x=0, y=450)
 
-    if not hasattr(manager, "buttons"):
-        manager.buttons = [
-            Button("←", 100, 550, 30, action="mouth_left"),
-            Button("→", 200, 550, 30, action="mouth_right"),
-            Button("発射", 500, 550, 40, action="shoot")
-        ]
+ 
+    manager.buttons = [
+        Button("circle", 400, 100, 40, action="shoot")  # ← 例：上の方・中央に配置
+    ]
 
     if not hasattr(manager, "shots"):
         manager.shots = []

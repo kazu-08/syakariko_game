@@ -17,7 +17,7 @@ def show_transition_screen(screen, width, height, message, jaga_counts):
 
         # 味ごとのカウントを描画
         for i, (flavor, count) in enumerate(jaga_counts.items()):
-            text = font_text.render(f"{flavor}: {count}本", True, (0, 0, 0))
+            text = font_text.render(f"{flavor}: {count}", True, (0, 0, 0))
             screen.blit(text, (width // 2 - 60, height // 3 + i * 40))
 
         start_button.draw(screen)
