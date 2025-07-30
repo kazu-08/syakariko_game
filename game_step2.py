@@ -107,7 +107,9 @@ def run_step2(screen, manager):
     screen.blit(score_txt, (10, 10))
 
     # 残りじゃがりこ本数表示（毎フレーム更新されるように）
-    remaining_txt = font.render(f"Jaga: {len(manager.jagariko_list)} ", True, (0, 0, 0))
+    # ✅ 発射で実際に減っているのはこちら
+    remaining_txt = font.render(f"Jaga: {manager.remaining_shots}", True, (0, 0, 0))
+
     screen.blit(remaining_txt, (10, 40))
 
     pygame.display.flip()
