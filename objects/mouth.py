@@ -29,7 +29,7 @@ class Mouth:
         screen.blit(self.image, (self.x, self.y))
 
         # ⬇️ 当たり判定の範囲を赤枠で描画（デバッグ用）
-        pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
+       # pygame.draw.rect(screen, (255, 0, 0), self.hitbox, 2)
 
 
     def is_in_mouth(self, Jaga):
