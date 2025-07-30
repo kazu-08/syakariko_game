@@ -115,7 +115,7 @@ class GameManager:
             "Salad": 0,
             "Tarako": 0
         }
-
+        self.buttons = None
         self.score = 0
         print(f"reser_score: {self.score}")
         self.shots = []

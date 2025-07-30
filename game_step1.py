@@ -24,7 +24,7 @@ def run_step1(screen, manager):
     if not hasattr(manager, "cup"):
         manager.cup = Cup(x=300, y=400, screen_width=screen.get_width())
 
-    if not hasattr(manager, "buttons"):
+    if not hasattr(manager, "buttons") or manager.buttons is None:
         manager.buttons = [
             Button("left", 100, 550, 30, action="left"),
             Button("right", 200, 550, 30, action="right"),

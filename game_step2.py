@@ -52,7 +52,7 @@ def run_step2(screen, manager):
                 elif result == "mouth_right":
                     manager.mouth.move("right")
                 elif result == "shoot":
-                    JagaClass = random.choice(JAGA_CLASSES)
+                    JagaClass = random.choice(list(JAGA_CLASSES.values()))
                     new_jaga = JagaClass(
                         x=manager.cup.rect.centerx,
                         y=manager.cup.rect.top,
